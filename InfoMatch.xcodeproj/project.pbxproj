@@ -11,6 +11,8 @@
 		24B0282B271F071700B0B1BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0282A271F071700B0B1BC /* ContentView.swift */; };
 		24B0282D271F071A00B0B1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B0282C271F071A00B0B1BC /* Assets.xcassets */; };
 		24B02830271F071A00B0B1BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B0282F271F071A00B0B1BC /* Preview Assets.xcassets */; };
+		24BF9CFD27208F17009E7687 /* MatchGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF9CFC27208F17009E7687 /* MatchGame.swift */; };
+		24BF9CFF272097EF009E7687 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF9CFE272097EF009E7687 /* CardType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		24B0282A271F071700B0B1BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		24B0282C271F071A00B0B1BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24B0282F271F071A00B0B1BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		24BF9CFC27208F17009E7687 /* MatchGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchGame.swift; sourceTree = "<group>"; };
+		24BF9CFE272097EF009E7687 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,9 @@
 		24B02827271F071700B0B1BC /* InfoMatch */ = {
 			isa = PBXGroup;
 			children = (
+				24BF9CFB27208EF0009E7687 /* ViewModel */,
+				24BF9CFA27208EE8009E7687 /* View */,
+				24BF9CF927208EDB009E7687 /* Model */,
 				24B02828271F071700B0B1BC /* InfoMatchApp.swift */,
 				24B0282A271F071700B0B1BC /* ContentView.swift */,
 				24B0282C271F071A00B0B1BC /* Assets.xcassets */,
@@ -65,6 +72,29 @@
 				24B0282F271F071A00B0B1BC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		24BF9CF927208EDB009E7687 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24BF9CFC27208F17009E7687 /* MatchGame.swift */,
+				24BF9CFE272097EF009E7687 /* CardType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24BF9CFA27208EE8009E7687 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24BF9CFB27208EF0009E7687 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +168,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B0282B271F071700B0B1BC /* ContentView.swift in Sources */,
+				24BF9CFF272097EF009E7687 /* CardType.swift in Sources */,
 				24B02829271F071700B0B1BC /* InfoMatchApp.swift in Sources */,
+				24BF9CFD27208F17009E7687 /* MatchGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
