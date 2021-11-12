@@ -6,29 +6,31 @@
 //
 
 struct MatchGame<CardContent> {
-    
-    var news: Array<Card>
-    var newsTypes: Array<Card>
+
+    private(set) var topCards: Array<Card>
+    private(set) var bottomCards: Array<Card>
     
     mutating func choose(card: Card) {
         
     }
     
+    //Passing function createCardContent to init
     init(numberOfPairOfCards: Int, createCardContent: (Int) -> CardContent) {
-        news = Array<Card>()
-        newsTypes = Array<Card>()
-        
-        for pairIndex in 0..<numberOfPairOfCards {
-            let newsContent: CardContent = createCardContent(pairIndex)
-            let newsTypeContent: CardContent = createCardContent(pairIndex)
-            news.append(Card(isMatched: false, isFacedUp: false, content: newsContent, id: pairIndex))
-            newsTypes.append(Card(isMatched: false, isFacedUp: false, content: newsTypeContent, id: pairIndex))
+        topCards = Array<Card>()
+        bottomCards = Array<Card>()
+        for index in 0..<numberOfPairOfCards {
+            let topContent: CardContent = createCardContent(index)
+            let bottomContent: CardContent = createCardContent(index)
+            topCards.append(Card(content: topContent, id: index))
+            bottomCards.append(Card(content: bottomContent, id: index))
         }
+        topCards.shuffle()
+        bottomCards.shuffle()
     }
     
     struct Card: Identifiable {
-        var isMatched: Bool
-        var isFacedUp: Bool
+        var isMatched: Bool = false
+        var isFacedUp: Bool = false
         let content: CardContent
         var id: Int
     }
