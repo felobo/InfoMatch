@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct NewsMatchDetailsView: View {
+    
+    private var model: InfoMatch = InfoMatch()
+    
     var body: some View {
         
         NavigationView {
@@ -16,8 +19,6 @@ struct NewsMatchDetailsView: View {
                 NewsGameGradientView()
                 
                 VStack {
-                    
-                    
                     HStack() {
                         Text("InfoMatch")
                             .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -34,20 +35,30 @@ struct NewsMatchDetailsView: View {
                     Spacer(minLength: 60)
                     
                     ScrollView() {
-                        ForEach((0..<10), id: \.self) { level in
-                            NewsMatchLevelView(isLocked: true, level: level + 1)
-                        }
-                    }.padding()
+                        
+                        ForEach((0..<model.matchGames.count), id: \.self) {
+                            level in
+                            if !model.matchGames[level].isLocked {
+                                NavigationLink(destination: MatchGameView(model: model.matchGames[level])) {
+                                    NewsMatchLevelView(matchGame: model.matchGames[level])
+                                }
+                            }
+                            else {
+                                NewsMatchLevelView(matchGame: model.matchGames[level])
+                            }
+                            
+                        }.padding()
+                    }
+                    .navigationBarHidden(true)
+                    
                 }
-                .navigationBarHidden(true)
-                
             }
         }
     }
-}
-
-struct NewsMatchDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewsMatchDetailsView()
+    
+    struct NewsMatchDetailsView_Previews: PreviewProvider {
+        static var previews: some View {
+            NewsMatchDetailsView()
+        }
     }
 }

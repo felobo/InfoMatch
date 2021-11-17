@@ -2,41 +2,32 @@
 //  NewsCardView.swift
 //  InfoMatch
 //
-//  Created by Fernando Lobo on 28/10/21.
+//  Created by Fernando Lobo on 17/11/21.
 //
 
 import SwiftUI
 
 struct NewsCardView: View {
     
-    @Binding var news: News
+    @Binding var model: MatchGame.NewsCard
+    var image: String {
+        return model.isFacedUp ? model.content.img : "cardbg"
+    }
     
     var body: some View {
         ZStack {
-            VStack {
-                ScrollView {
-                    Image(news.img)
-                        .resizable()
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.6)
-                        .aspectRatio(contentMode: .fit)
-                    Text("Contexto")
-                        .font(.system(size: 30, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading)
-                    ForEach(news.context, id: \.self) { tip in
-                        Text(tip)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
-                            .padding()
-                    }
-                }
-            }.padding()
-        }
+            Image(image)
+                .resizable()
+                .background(Color.white)
+                .cornerRadius(10)
+                .aspectRatio(contentMode: .fit)
+        }.frame(width: 300, height: 300)
+            .padding()
     }
 }
 
 struct NewsCardView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsCardView(news: Binding.constant(NewsDataBase().dataBase[2]))
+        NewsCardView(model: Binding.constant(MatchGame(level: 1, dataBase: NewsDataBase().dataBase, isLocked: true).topCards[0]))
     }
 }

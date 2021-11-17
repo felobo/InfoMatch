@@ -9,15 +9,13 @@ import SwiftUI
 
 struct NewsMatchLevelView: View {
     
-    @State var isLocked: Bool
-    
-    let level: Int
+    let matchGame: MatchGame
     var matches: Int {
-        return level * 3
+        return matchGame.level * 3
     }
     var body: some View {
         ZStack {
-            if isLocked {
+            if !matchGame.isLocked {
                 LinearGradient(gradient: GameGradient.gamesCells.getGradient(), startPoint: .top, endPoint: .bottom)
             }
             else {
@@ -26,7 +24,7 @@ struct NewsMatchLevelView: View {
             
             VStack {
                 HStack {
-                    Text("Nível \(level)")
+                    Text("Nível \(matchGame.level + 1)")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                     Spacer()
                 }.padding(.leading)
@@ -52,6 +50,6 @@ struct NewsMatchLevelView: View {
 
 struct NewsMatchLevelView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsMatchLevelView(isLocked: true, level: 1)
+        NewsMatchLevelView(matchGame: MatchGame(level: 1, dataBase: NewsDataBase().dataBase, isLocked: false))
     }
 }

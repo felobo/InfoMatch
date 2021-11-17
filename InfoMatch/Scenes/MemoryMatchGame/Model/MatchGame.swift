@@ -7,12 +7,13 @@
 
 import Foundation
 
-class MatchGame {
+class MatchGame: ObservableObject {
 
-    private var level: Int
+    private(set) var level: Int
+    var isLocked: Bool
     private var dataBase: [News] = []
-    private(set) var topCards: Array<NewsCard> = []
-    private(set) var bottomCards: Array<NewsTypeCard> = []
+    var topCards: Array<NewsCard> = []
+    var bottomCards: Array<NewsTypeCard> = []
     var isFinished: Bool {
         return topCards.filter{ !$0.isMatched }.isEmpty
     }
@@ -36,7 +37,8 @@ class MatchGame {
     }
     
     //Passing function createCardContent to init
-    init(level: Int, dataBase: [News], numberOfPairOfCards: Int, createTopCardContent: (Int) -> News) {
+    init(level: Int, dataBase: [News], isLocked: Bool) {
+        self.isLocked = isLocked
         self.level = level
         self.dataBase = dataBase
         let dataSet = dataBase.shuffled()
@@ -46,7 +48,7 @@ class MatchGame {
     func createCards(newsSet: [News]) {
         topCards = []
         bottomCards = []
-        for news in newsSet[0...getTotalCards(level: level)] {
+        for news in newsSet[0...getTotalCards(level: level) - 1] {
             topCards.append(NewsCard(content: news))
             bottomCards.append(NewsTypeCard(content: news.type))
         }
@@ -54,14 +56,20 @@ class MatchGame {
         bottomCards.shuffle()
     }
     
-    struct NewsCard: Identifiable{
+    struct NewsCard: Identifiable, Hashable{
+        static func == (lhs: MatchGame.NewsCard, rhs: MatchGame.NewsCard) -> Bool {
+            return lhs.id == rhs.id
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
         var isMatched: Bool = false
         var isFacedUp: Bool = false
         let content: News
         let id: UUID = UUID()
     }
     
-    struct NewsTypeCard: Identifiable {
+    struct NewsTypeCard: Identifiable, Hashable {
         var isMatched: Bool = false
         var isFacedUp: Bool = false
         let content: NewsType

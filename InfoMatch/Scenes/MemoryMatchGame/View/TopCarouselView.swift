@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopCarouselView: View {
     
-    @ObservedObject var viewModel: NewsMatchGame
+    var topCards: [MatchGame.NewsCard]
     
     var body: some View {
         ZStack {
@@ -18,9 +18,9 @@ struct TopCarouselView: View {
             
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(NewsMatchGame.newsSet.indices, id: \.self) {
-                        index in
-                        let img = NewsMatchGame.newsSet[index].img
+                    ForEach(topCards, id: \.self) {
+                        card in
+                        let img = card.content.img
                         ZStack {
                             Image(img)
                                 .resizable()
@@ -39,8 +39,8 @@ struct TopCarouselView: View {
 }
 
 struct TopCarouselView_Previews: PreviewProvider {
+    @State static var cards = [MatchGame.NewsCard(content: News(type: NewsType.Conspiracy, img: NewsImages.flatEarthTweet.rawValue, context: ["Trata-se de um perfil de rede social cujo principal conteúdo é sobre terraplanismo.", "Todos os livros de física usam conceitos que só fazem sentido para um modelo de Terra esférica, como por exemplo, a aceleração da gravidade.", "Durante o século XVII, Galileu Galilei foi condenado à prisão formal por defender o sistema heliocêntrico."]))]
     static var previews: some View {
-        let game = NewsMatchGame()
-        TopCarouselView(viewModel: game)
+        TopCarouselView(topCards: cards)
     }
 }

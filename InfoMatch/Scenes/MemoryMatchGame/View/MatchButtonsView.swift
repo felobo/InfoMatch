@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MatchButtonsView: View {
     
-    //Insert binding viewmodel
+    var model: MatchGame
     
     var body: some View {
         
@@ -35,13 +35,11 @@ struct MatchButtonsView: View {
             }
             Spacer()
         }
-        
-        
     }
 }
 
-struct MatchButtonsView_Previews: PreviewProvider {
-    static var previews: some View {
-        MatchButtonsView()
-    }
-}
+//struct MatchButtonsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MatchButtonsView(model: MatchGame(level: 1, dataBase: NewsDataBase().dataBase, isLocked: false))
+//    }
+//}
