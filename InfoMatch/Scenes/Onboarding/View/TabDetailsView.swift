@@ -18,12 +18,10 @@ struct TabDetailsView: View {
                 .padding()
             Text(tabs[index].title)
                 .font(.system(size: 36, weight: .bold, design: .rounded))
-                .bold()
                 .padding(.top)
             Text(tabs[index].description)
                 .padding()
                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                
                 .padding()
             Spacer()
             

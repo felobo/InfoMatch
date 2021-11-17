@@ -17,19 +17,17 @@ struct NewsTypeCardView: View {
             let shape = RoundedRectangle(cornerRadius: 16)
             shape.foregroundColor(.orange)
             shape.strokeBorder(lineWidth: 3.0).foregroundColor(.white)
-            
             VStack {
                 Text(title)
-                    .fontWeight(.bold).font(.largeTitle)
+                    .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 Text(description)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .font(.custom("Helvetica Neue", size: 20))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
                     .padding()
-                    
             }.padding(.all)
-        }
+        }.frame(width: 300, height: 300)
     }
 }
 

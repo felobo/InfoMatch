@@ -9,21 +9,22 @@ import SwiftUI
 
 class NewsMatchGame: ObservableObject {
     
-    static let news: Array<News> = NewsDataBase().dataBase
-    static func createMatchGame() -> MatchGame<News> {
-        MatchGame(numberOfPairOfCards: news.count, createCardContent: { pairIndex in
-            return NewsMatchGame.news[pairIndex]
-        })
-    }
-    
-    @Published var model: MatchGame = createMatchGame()
-    
-    var topCards: Array<MatchGame<News>.Card> {
-        return model.topCards
-    }
-    var bottomCards: Array<MatchGame<News>.Card> {
-        return model.bottomCards
-    }
+    static let newsSet: Array<News> = NewsDataBase().dataBase
+//
+//    static func createMatchGame() -> MatchGame {
+//        MatchGame(dataBase: newsSet, numberOfPairOfCards: news.count, createTopCardContent: { pairIndex in
+//            return NewsMatchGame.news[pairIndex]
+//        }
+//    }
+//
+//    @Published var model: MatchGame = createMatchGame()
+//
+//    var topCards: Array<MatchGame.NewsCard> {
+//        return model.topCards
+//    }
+//    var bottomCards: Array<MatchGame.NewsTypeCard> {
+//        return model.bottomCards
+//    }
     
     func getNewsTypeDescription(newsType: NewsType) -> String {
         switch newsType {

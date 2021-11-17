@@ -18,16 +18,15 @@ struct TopCarouselView: View {
             
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(NewsMatchGame.news.indices, id: \.self) {
+                    ForEach(NewsMatchGame.newsSet.indices, id: \.self) {
                         index in
-                        let img = NewsMatchGame.news[index].img
+                        let img = NewsMatchGame.newsSet[index].img
                         ZStack {
                             Image(img)
                                 .resizable()
-                                .frame(width: 250, height: 250)
+                                .frame(width: 300, height: 300)
                                 .background(Color.white)
                                 .cornerRadius(10)
-                                
                         }.padding()
                     }.ignoresSafeArea()
                 }

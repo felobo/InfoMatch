@@ -14,6 +14,7 @@ enum GameGradient {
     case mainMenu
     case newsMatchGame
     case gamesCells
+    case lockedGameCells
     
     func getGradient() -> Gradient {
         switch self {
@@ -27,6 +28,8 @@ enum GameGradient {
             return Gradient(colors: [Color(.init(red: 67/255, green: 151/255, blue: 145/255, alpha: 1.0)), Color(.init(red: 93/255, green: 201/255, blue: 192/255, alpha: 1.0))])
         case .newsMatchGame:
             return Gradient(colors: [Color(.init(red: 8/255, green: 20/255, blue: 37/255, alpha: 1.0)), Color(.init(red: 36/255, green: 56/255, blue: 87/255, alpha: 1.0))])
+        case .lockedGameCells:
+            return Gradient(colors: [Color(.init(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)), Color(.init(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0))])
         }
     }
 }

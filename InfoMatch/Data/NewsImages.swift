@@ -6,7 +6,7 @@
 //
 
 enum NewsImages: String {
-    case messiMeme = "satira1"
+    case messiMeme = "messi_ST"
     case flatEarthTweet = "olavo_TP"
     case bazzoOpinion = "gazzo_OP"
 }
