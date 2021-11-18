@@ -10,7 +10,7 @@ import SwiftUI
 class NewsMatchGame: ObservableObject {
     
     static let newsSet: Array<News> = NewsDataBase().dataBase
-//
+
 //    static func createMatchGame() -> MatchGame {
 //        MatchGame(dataBase: newsSet, numberOfPairOfCards: news.count, createTopCardContent: { pairIndex in
 //            return NewsMatchGame.news[pairIndex]
@@ -25,6 +25,6 @@ class NewsMatchGame: ObservableObject {
 //    var bottomCards: Array<MatchGame.NewsTypeCard> {
 //        return model.bottomCards
 //    }
-    
+//
     
 }

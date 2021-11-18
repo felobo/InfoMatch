@@ -14,41 +14,49 @@ class MatchGame: ObservableObject {
     var isLocked: Bool
     var isTopCardSelected: Bool = false
     var isBottomCardSelected: Bool = false
-    private var dataBase: [News] = []
+    var dataBase: [News] = []
     var topCards: Array<NewsCard> = []
     var bottomCards: Array<NewsTypeCard> = []
     var isFinished: Bool {
-        return topCards.filter{ !$0.isMatched }.isEmpty
+        return topCards.filter{ $0.cardState != .matched}.isEmpty
     }
-    var topCardSelected: MatchGame.NewsCard?
-    var bottomCardSelected: MatchGame.NewsTypeCard?
-    
-    
+        
     func chooseNewsCard(card: inout NewsCard) {
-        if !(isTopCardSelected && card.isMatched){
-            card.isFacedUp = true
-            isTopCardSelected = true
-            topCardSelected = card
-        }
+        print("krrrrrauu")
+        guard card.cardState != .facedDown,
+              topCards.filter({ $0.cardState == .selected }).isEmpty
+        else { return }
+        card.cardState = .selected
     }
     
     func chooseNewsTypeCard(card: inout NewsTypeCard) {
-        if !(isBottomCardSelected && card.isMatched) {
-            card.isFacedUp = true
-            isBottomCardSelected = true
-            bottomCardSelected = card
-        }
+        print("krrrrrauu")
+        guard card.cardState != .facedDown,
+              bottomCards.filter({ $0.cardState == .selected }).isEmpty
+        else { return }
+        card.cardState = .selected
     }
     
-    func matchCards(_ newsCard: inout NewsCard, _ newsTypeCard: inout NewsTypeCard) {
-        if (isTopCardSelected && isBottomCardSelected) {
-            if newsCard.content.type == newsTypeCard.content {
-                newsCard.isMatched = true
-                newsTypeCard.isMatched = true
-            } else {
-                newsCard.isFacedUp = false
-                newsTypeCard.isFacedUp = false
+    func matchCards() {
+        var topIndex = -1
+        var bottomIndex = -1
+        for i in 0..<topCards.count {
+            if topCards[i].cardState == .selected {
+                topIndex = i
             }
+        }
+        for j in 0..<bottomCards.count {
+            if bottomCards[j].cardState == .selected {
+                bottomIndex = j
+            }
+        }
+        if (topIndex < 0 || bottomIndex < 0) {
+            print("nao tem duas selecionadas")
+            return
+        }
+        if topCards[topIndex].content.type == bottomCards[bottomIndex].content {
+            topCards[topIndex].cardState = .matched
+            bottomCards[bottomIndex].cardState = .matched
         }
     }
     
@@ -72,32 +80,35 @@ class MatchGame: ObservableObject {
         bottomCards.shuffle()
     }
     
-    struct NewsCard: Identifiable, Hashable{
+    struct NewsCard: Identifiable, Hashable {
         static func == (lhs: MatchGame.NewsCard, rhs: MatchGame.NewsCard) -> Bool {
             return lhs.id == rhs.id
         }
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
         }
-        var isMatched: Bool = false
-        var isFacedUp: Bool = false
+        var cardState: CardState = .facedDown
         let content: News
         let id: UUID = UUID()
-        
+
     }
     
     struct NewsTypeCard: Identifiable, Hashable {
-        var isMatched: Bool = false
-        var isFacedUp: Bool = false
+        var cardState: CardState = .facedDown
         let content: NewsType
         let id: UUID = UUID()
-        
     }
     
     func getTotalCards(level: Int) -> Int {
         var result = 3 + (level % 2)
         result = result < dataBase.count ? result : dataBase.count
         return result
+    }
+    
+    enum CardState {
+        case facedDown
+        case selected
+        case matched
     }
     
 }

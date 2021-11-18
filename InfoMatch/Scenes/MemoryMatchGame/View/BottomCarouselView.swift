@@ -8,32 +8,31 @@ import SwiftUI
 
 struct BottomCarouselView: View {
 
-    var bottomCards: [MatchGame.NewsTypeCard]
+    
+    var model: MatchGame
 
     var body: some View {
         ZStack {
 
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(bottomCards, id: \.self) {
-                        card in
+                    ForEach(0..<model.bottomCards.count, id: \.self) {
+                        index in
                         ZStack {
-                            NewsTypeCardView(model: card)
+                            NewsTypeCardView(model: model.bottomCards[index]).onTapGesture {
+                                model.chooseNewsTypeCard(card: &model.bottomCards[index])
+                            }
                         }
                     }.ignoresSafeArea()
                 }
             }
-
         }.ignoresSafeArea()
             .frame(width: 300, height: 300, alignment: .center)
-
-
     }
 }
 
-struct BottomCarouselView_Previews: PreviewProvider {
-    static var previews: some View {
-        let bottomCards = [MatchGame.NewsTypeCard(content: .Satire), MatchGame.NewsTypeCard(content: .Conspiracy), MatchGame.NewsTypeCard(content: .ClickBait)]
-        BottomCarouselView(bottomCards : bottomCards)
-    }
-}
+//struct BottomCarouselView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BottomCarouselView(model : MatchGame())
+//    }
+//}

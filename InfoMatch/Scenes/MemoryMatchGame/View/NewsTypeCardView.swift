@@ -14,7 +14,7 @@ struct NewsTypeCardView: View {
     var body: some View {
         ZStack{
             VStack {
-                if model.isFacedUp {
+                if !(model.cardState == .facedDown) {
                     Text(model.content.rawValue)
                         .font(.system(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(.black)
@@ -36,7 +36,7 @@ struct NewsTypeCardView: View {
 
 struct NewsTypeCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let card = MatchGame.NewsTypeCard(isMatched: false, isFacedUp: true, content: NewsType.ClickBait)
+        let card = MatchGame.NewsTypeCard(content: NewsType.ClickBait)
         NewsTypeCardView(model: card)
     }
 }

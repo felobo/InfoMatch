@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewsMatchDetailsView: View {
     
+    @State private var isShowingAlert = false
     private var model: InfoMatch = InfoMatch()
     
     var body: some View {
@@ -48,6 +49,7 @@ struct NewsMatchDetailsView: View {
                             }
                             
                         }.padding()
+                        
                     }
                     .navigationBarHidden(true)
                     

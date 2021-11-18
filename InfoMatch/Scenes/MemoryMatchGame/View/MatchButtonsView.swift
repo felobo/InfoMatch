@@ -5,18 +5,20 @@
 //  Created by Fernando Lobo on 16/11/21.
 //
 import SwiftUI
+import Foundation
 
 struct MatchButtonsView: View {
     
     @State private var checkTap = false
     @State private var xTap = false
+    
     var model: MatchGame
     
     var body: some View {
-        
         HStack {
             Spacer()
             Button {
+                model.matchCards()
                 xTap.toggle()
                 print("Did not Match")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -30,6 +32,7 @@ struct MatchButtonsView: View {
             }
             Spacer()
             Button {
+                model.matchCards()
                 checkTap.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     checkTap.toggle()

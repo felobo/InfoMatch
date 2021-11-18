@@ -9,9 +9,13 @@ import SwiftUI
 
 struct NewsMatchLevelView: View {
     
+    @State private var isShowingAlert = false
     let matchGame: MatchGame
     var matches: Int {
-        return matchGame.level * 3
+        return matchGame.dataBase.count
+    }
+    var symbol: String {
+        return (matchGame.isLocked ? "lock.square" : "play.rectangle")
     }
     var body: some View {
         ZStack {
@@ -29,13 +33,13 @@ struct NewsMatchLevelView: View {
                     Spacer()
                 }.padding(.leading)
                 HStack {
-                    Text("X Matches")
+                    Text("\(matches) Matches")
                         .font(.system(size: 16, weight: .semibold, design: .rounded))
                     Spacer()
                 }.padding(.leading)
                 HStack {
                     Spacer()
-                    Image(systemName: "play.rectangle")
+                    Image(systemName: symbol)
                         .resizable()
                         .frame(width: 30, height: 30, alignment: .center)
                         .padding(.trailing)

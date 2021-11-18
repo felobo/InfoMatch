@@ -8,24 +8,26 @@ import SwiftUI
 
 struct TopCarouselView: View {
     
-    var topCards: [MatchGame.NewsCard]
+    
+    var model: MatchGame
     
     var body: some View {
         ZStack {
-                        
+
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(topCards, id: \.self) {
-                        card in
+                    ForEach(0..<model.topCards.count, id: \.self) {
+                        index in
                         ZStack {
-                            NewsCardView(model: card)
+                            NewsCardView(model: model.topCards[index]).onTapGesture {
+                                model.chooseNewsCard(card: &model.topCards[index])
+                            }
                         }
                     }.ignoresSafeArea()
                 }
             }
-        }.frame(width: 300, height: 300, alignment: .center).ignoresSafeArea()
-        
-        
+        }.ignoresSafeArea()
+            .frame(width: 300, height: 300, alignment: .center)
     }
 }
 
