@@ -5,37 +5,36 @@
 //  Created by Fernando Lobo on 17/11/21.
 //
 
-//import SwiftUI
-//
-//struct BottomCarousselView: View {
-//
-//    var bottomCards: [MatchGame.NewsTypeCard]
-//
-//    var body: some View {
-//        ZStack {
-//
-//            Color(.black)
-//
-//            ScrollView(.horizontal) {
-//                LazyHStack {
-//                    ForEach(bottomCards, id: \.self) {
-//                        card in
-//
-//                        ZStack {
-//                            NewsCardView(model: )
-//                        }.padding()
-//                    }.ignoresSafeArea()
-//                }
-//            }
-//
-//        }.ignoresSafeArea()
-//
-//
-//    }
-//}
+import SwiftUI
 
-//struct BottomCarouselView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BottomCarouselView()
-//    }
-//}
+struct BottomCarouselView: View {
+
+    var bottomCards: [MatchGame.NewsTypeCard]
+
+    var body: some View {
+        ZStack {
+
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(bottomCards, id: \.self) {
+                        card in
+                        ZStack {
+                            NewsTypeCardView(model: card)
+                        }.padding()
+                    }.ignoresSafeArea()
+                }
+            }
+
+        }.ignoresSafeArea()
+            .frame(width: 300, height: 300, alignment: .center)
+
+
+    }
+}
+
+struct BottomCarouselView_Previews: PreviewProvider {
+    static var previews: some View {
+        let bottomCards = [MatchGame.NewsTypeCard(content: .Satire), MatchGame.NewsTypeCard(content: .Conspiracy), MatchGame.NewsTypeCard(content: .ClickBait)]
+        BottomCarouselView(bottomCards : bottomCards)
+    }
+}
