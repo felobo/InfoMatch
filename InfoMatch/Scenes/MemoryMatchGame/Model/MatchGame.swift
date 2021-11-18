@@ -8,31 +8,31 @@
 import Foundation
 
 class MatchGame: ObservableObject {
+    
 
     private(set) var level: Int
     var isLocked: Bool
+    var isTopCardSelected: Bool = false
+    var isBottomCardSelected: Bool = false
     private var dataBase: [News] = []
     var topCards: Array<NewsCard> = []
     var bottomCards: Array<NewsTypeCard> = []
     var isFinished: Bool {
         return topCards.filter{ !$0.isMatched }.isEmpty
     }
+    var topCardSelected: MatchGame.NewsCard?
+    var bottomCardSelected: MatchGame.NewsTypeCard?
     
-    func chooseNewsCard(card: inout NewsCard) {
-        card.isFacedUp = true
-    }
-    
-    func chooseNewsTypeCard(card: inout NewsTypeCard) {
-        card.isFacedUp = true
-    }
     
     func matchCards(_ newsCard: inout NewsCard, _ newsTypeCard: inout NewsTypeCard) {
-        if newsCard.content.type == newsTypeCard.content {
-            newsCard.isMatched = true
-            newsTypeCard.isMatched = true
-        } else {
-            newsCard.isFacedUp = false
-            newsTypeCard.isFacedUp = false
+        if (isTopCardSelected && isBottomCardSelected) {
+            if newsCard.content.type == newsTypeCard.content {
+                newsCard.isMatched = true
+                newsTypeCard.isMatched = true
+            } else {
+                newsCard.isFacedUp = false
+                newsTypeCard.isFacedUp = false
+            }
         }
     }
     
@@ -67,6 +67,14 @@ class MatchGame: ObservableObject {
         var isFacedUp: Bool = false
         let content: News
         let id: UUID = UUID()
+        
+        func chooseNewsCard(card: inout NewsCard) {
+            if !(isTopCardSelected && card.isMatched){
+                card.isFacedUp = true
+                isTopCardSelected = true
+                topCardSelected = card
+            }
+        }
     }
     
     struct NewsTypeCard: Identifiable, Hashable {
@@ -74,6 +82,14 @@ class MatchGame: ObservableObject {
         var isFacedUp: Bool = false
         let content: NewsType
         let id: UUID = UUID()
+        
+        func chooseNewsTypeCard(card: inout NewsTypeCard) {
+            if !(isBottomCardSelected && card.isMatched) {
+                card.isFacedUp = true
+                isBottomCardSelected = true
+                bottomCardSelected = card
+            }
+        }
     }
     
     func getTotalCards(level: Int) -> Int {

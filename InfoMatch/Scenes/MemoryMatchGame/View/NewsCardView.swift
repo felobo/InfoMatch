@@ -21,6 +21,9 @@ struct NewsCardView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .aspectRatio(contentMode: .fit)
+                .onTapGesture {
+                    model.
+                }
         }.frame(width: 250, height: 250)
     }
 }

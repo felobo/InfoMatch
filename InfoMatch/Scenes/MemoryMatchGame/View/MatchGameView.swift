@@ -16,8 +16,18 @@ struct MatchGameView: View {
             LinearGradient(gradient: GameGradient.newsMatchGame.getGradient(), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             VStack {
                 Spacer()
-                TopCarouselView(topCards: model.topCards)
-                BottomCarouselView(bottomCards: model.bottomCards)
+                
+                
+                TopCarouselView(topCards: model.topCards).onTapGesture {
+                    //
+                }
+                
+                
+                BottomCarouselView(bottomCards: model.bottomCards).onTapGesture {
+                    //
+                }
+                
+                
                 Spacer()
                 MatchButtonsView(model: model)
             }
