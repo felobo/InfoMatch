@@ -14,10 +14,11 @@ struct MatchGameView: View {
     var body: some View {
         ZStack {
             LinearGradient(gradient: GameGradient.newsMatchGame.getGradient(), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
-            
             VStack {
+                Spacer()
                 TopCarouselView(topCards: model.topCards)
                 BottomCarouselView(bottomCards: model.bottomCards)
+                Spacer()
                 MatchButtonsView(model: model)
             }
             

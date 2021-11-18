@@ -20,9 +20,8 @@ struct NewsTypeCardView: View {
                         .foregroundColor(.black)
                     Text(model.content.getNewsTypeDescription())
                         .fontWeight(.semibold)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.black)
-                        .padding()
                 }
                 else {
                     Image("cardbg")
@@ -31,8 +30,7 @@ struct NewsTypeCardView: View {
                         .aspectRatio(contentMode: .fit)
                 }
             }.cornerRadius(12)
-            .padding(.all)
-        }.frame(width: 300, height: 300)
+        }.frame(width: 250, height: 250)
     }
 }
 

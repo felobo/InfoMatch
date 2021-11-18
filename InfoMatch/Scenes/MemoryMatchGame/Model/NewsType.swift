@@ -19,7 +19,7 @@ enum NewsType: String {
         case .Opinion:
             return "Nem sempre a opinião está claramente identificada. Busque etiquetas como “vozes”, “coluna” ou“opinião”. Linguagem forte ou tendenciosa geralmente são pistas de que alguém quer “vender” as suas ideias."
         case .ClickBait:
-            return "Conteúdo produzido com o objetivo de ganhar cliques na internet. Geralmente aparece sob a forma de títulos chamativos ou sensacionalistas, que despertam a curiosidade e aumenta o número de acessos a um determinado site."
+            return "Conteúdo produzido com o objetivo de ganhar cliques na internet. Geralmente aparece sob a forma de títulos chamativos, que despertam a curiosidade e aumenta o número de acessos a um determinado site."
         case .FakeContext:
             return "A imagem é verdadeira, mas está associada à um contexto diferente o que foi relacionado."
         case .Satire:

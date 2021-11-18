@@ -18,18 +18,12 @@ struct TopCarouselView: View {
                 LazyHStack {
                     ForEach(topCards, id: \.self) {
                         card in
-                        let img = card.content.img
                         ZStack {
-                            Image(img)
-                                .resizable()
-                                .frame(width: 300, height: 300)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                        }.padding()
+                            NewsCardView(model: card)
+                        }
                     }.ignoresSafeArea()
                 }
             }
-            
         }.frame(width: 300, height: 300, alignment: .center).ignoresSafeArea()
         
         

@@ -20,7 +20,7 @@ struct BottomCarouselView: View {
                         card in
                         ZStack {
                             NewsTypeCardView(model: card)
-                        }.padding()
+                        }
                     }.ignoresSafeArea()
                 }
             }
