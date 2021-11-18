@@ -4,7 +4,6 @@
 //
 //  Created by Fernando Lobo on 17/11/21.
 //
-
 import SwiftUI
 
 struct BottomCarouselView: View {

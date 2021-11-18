@@ -4,7 +4,6 @@
 //
 //  Created by Fernando Lobo on 17/11/21.
 //
-
 import SwiftUI
 
 struct NewsCardView: View {
@@ -22,7 +21,7 @@ struct NewsCardView: View {
                 .cornerRadius(12)
                 .aspectRatio(contentMode: .fit)
                 .onTapGesture {
-                    model.
+                    //
                 }
         }.frame(width: 250, height: 250)
     }

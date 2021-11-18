@@ -4,7 +4,6 @@
 //
 //  Created by Fernando Lobo on 04/11/21.
 //
-
 import SwiftUI
 
 struct TopCarouselView: View {

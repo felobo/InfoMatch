@@ -4,7 +4,6 @@
 //
 //  Created by Fernando Lobo on 16/11/21.
 //
-
 import SwiftUI
 
 struct MatchButtonsView: View {
@@ -53,5 +52,4 @@ struct MatchButtonsView: View {
 //        MatchButtonsView(model: MatchGame(level: 1, dataBase: NewsDataBase().dataBase, isLocked: false))
 //    }
 //}
-
 

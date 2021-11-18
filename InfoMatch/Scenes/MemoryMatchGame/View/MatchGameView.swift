@@ -2,9 +2,15 @@
 //  MatchGameView.swift
 //  InfoMatch
 //
-//  Created by Fernando Lobo on 17/11/21.
+//  Created by Fernando Lobo on 18/11/21.
 //
 
+//
+//  MatchGameView.swift
+//  InfoMatch
+//
+//  Created by Fernando Lobo on 17/11/21.
+//
 import SwiftUI
 
 struct MatchGameView: View {

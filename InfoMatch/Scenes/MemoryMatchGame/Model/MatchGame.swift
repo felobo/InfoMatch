@@ -24,6 +24,22 @@ class MatchGame: ObservableObject {
     var bottomCardSelected: MatchGame.NewsTypeCard?
     
     
+    func chooseNewsCard(card: inout NewsCard) {
+        if !(isTopCardSelected && card.isMatched){
+            card.isFacedUp = true
+            isTopCardSelected = true
+            topCardSelected = card
+        }
+    }
+    
+    func chooseNewsTypeCard(card: inout NewsTypeCard) {
+        if !(isBottomCardSelected && card.isMatched) {
+            card.isFacedUp = true
+            isBottomCardSelected = true
+            bottomCardSelected = card
+        }
+    }
+    
     func matchCards(_ newsCard: inout NewsCard, _ newsTypeCard: inout NewsTypeCard) {
         if (isTopCardSelected && isBottomCardSelected) {
             if newsCard.content.type == newsTypeCard.content {
@@ -68,13 +84,6 @@ class MatchGame: ObservableObject {
         let content: News
         let id: UUID = UUID()
         
-        func chooseNewsCard(card: inout NewsCard) {
-            if !(isTopCardSelected && card.isMatched){
-                card.isFacedUp = true
-                isTopCardSelected = true
-                topCardSelected = card
-            }
-        }
     }
     
     struct NewsTypeCard: Identifiable, Hashable {
@@ -83,13 +92,6 @@ class MatchGame: ObservableObject {
         let content: NewsType
         let id: UUID = UUID()
         
-        func chooseNewsTypeCard(card: inout NewsTypeCard) {
-            if !(isBottomCardSelected && card.isMatched) {
-                card.isFacedUp = true
-                isBottomCardSelected = true
-                bottomCardSelected = card
-            }
-        }
     }
     
     func getTotalCards(level: Int) -> Int {
