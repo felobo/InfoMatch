@@ -27,7 +27,6 @@ struct MatchGameView: View {
                 Spacer()
                 MatchButtonsView(model: model)
             }
-            
         }
     }
 }

@@ -27,7 +27,7 @@ struct TopCarouselView: View {
                 }
             }
         }.ignoresSafeArea()
-            .frame(width: 300, height: 300, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width, height: 300, alignment: .center)
     }
 }
 
