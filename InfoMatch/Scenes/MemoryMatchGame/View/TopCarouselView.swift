@@ -10,6 +10,7 @@ struct TopCarouselView: View {
     
     
     var model: MatchGame
+    @State var isShowingModal = false
     
     var body: some View {
         ZStack {
@@ -20,7 +21,8 @@ struct TopCarouselView: View {
                         index in
                         ZStack {
                             NewsCardView(model: model.topCards[index]).onTapGesture {
-                                model.chooseNewsCard(card: &model.topCards[index])
+                                model.chooseNewsCard(card: model.topCards[index])
+                                isShowingModal.toggle()
                             }
                         }
                     }.ignoresSafeArea()

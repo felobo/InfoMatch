@@ -16,6 +16,7 @@ import SwiftUI
 struct MatchGameView: View {
     
     var model: MatchGame
+    @State private var isShowingModal = false
     
     var body: some View {
         ZStack {
@@ -27,7 +28,11 @@ struct MatchGameView: View {
                 Spacer()
                 MatchButtonsView(model: model)
             }
-        }
+        }.navigationBarHidden(true)
+    }
+    
+    func generateModalView(index: Int) -> ExpandedNewsCardView {
+        return ExpandedNewsCardView(news: model.topCards[index].content, isShowing: $isShowingModal)
     }
 }
 

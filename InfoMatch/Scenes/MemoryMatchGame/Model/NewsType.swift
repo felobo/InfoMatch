@@ -23,7 +23,7 @@ enum NewsType: String {
         case .FakeContext:
             return "A imagem é verdadeira, mas está associada à um contexto diferente o que foi relacionado."
         case .Satire:
-            return ""
+            return "Usado com intuito de humor. Não quer necessariamente causar mal, mas pode enganar o leitor."
         }
     }
 }

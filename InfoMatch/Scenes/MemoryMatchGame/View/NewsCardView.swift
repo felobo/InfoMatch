@@ -8,7 +8,7 @@ import SwiftUI
 
 struct NewsCardView: View {
     
-    var model: MatchGame.NewsCard
+    @ObservedObject var model: MatchGame.NewsCard
     var image: String {
         return (model.cardState == .facedDown ? "cardbg"  : model.content.img)
     }

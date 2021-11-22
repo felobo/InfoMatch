@@ -12,13 +12,13 @@ struct MatchButtonsView: View {
     @State private var checkTap = false
     @State private var xTap = false
     
-    var model: MatchGame
+    @ObservedObject var model: MatchGame
     
     var body: some View {
         HStack {
             Spacer()
             Button {
-                model.matchCards()
+                model.didNotMatchCards()
                 xTap.toggle()
                 print("Did not Match")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

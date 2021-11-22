@@ -9,19 +9,20 @@ import SwiftUI
 
 struct NewsTypeCardView: View {
     
-    var model: MatchGame.NewsTypeCard
+    @ObservedObject var model: MatchGame.NewsTypeCard
     
     var body: some View {
         ZStack{
+            Color(.white)
             VStack {
                 if !(model.cardState == .facedDown) {
                     Text(model.content.rawValue)
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                        .font(.system(size: 30, weight: .bold, design: .rounded))
                         .foregroundColor(.black)
                     Text(model.content.getNewsTypeDescription())
-                        .fontWeight(.semibold)
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.black)
+                        .padding(.all)
                 }
                 else {
                     Image("cardbg")
@@ -29,8 +30,9 @@ struct NewsTypeCardView: View {
                         .background(Color.white)
                         .aspectRatio(contentMode: .fit)
                 }
-            }.cornerRadius(12)
-        }.frame(width: 250, height: 250)
+            }
+        }.cornerRadius(12)
+            .frame(width: 250, height: 250)
     }
 }
 

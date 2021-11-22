@@ -20,7 +20,7 @@ struct BottomCarouselView: View {
                         index in
                         ZStack {
                             NewsTypeCardView(model: model.bottomCards[index]).onTapGesture {
-                                model.chooseNewsTypeCard(card: &model.bottomCards[index])
+                                model.chooseNewsTypeCard(card: model.bottomCards[index])
                             }
                         }
                     }.ignoresSafeArea()
