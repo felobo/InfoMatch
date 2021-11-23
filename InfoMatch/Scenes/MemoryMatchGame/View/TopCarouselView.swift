@@ -8,9 +8,8 @@ import SwiftUI
 
 struct TopCarouselView: View {
     
-    
+    @Binding var isShowingModal: Bool
     var model: MatchGame
-    @State var isShowingModal = false
     
     var body: some View {
         ZStack {
@@ -31,6 +30,11 @@ struct TopCarouselView: View {
         }.ignoresSafeArea()
             .frame(width: UIScreen.main.bounds.width, height: 300, alignment: .center)
     }
+    
+    func getCardIndex(index: Int) -> Int {
+        return index
+    }
+    
 }
 
 //struct TopCarouselView_Previews: PreviewProvider {

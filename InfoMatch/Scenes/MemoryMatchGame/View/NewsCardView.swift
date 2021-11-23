@@ -14,12 +14,20 @@ struct NewsCardView: View {
     }
     var body: some View {
         ZStack {
-            Image(image)
-                .resizable()
-                .background(Color.white)
-                .cornerRadius(12)
-                .aspectRatio(contentMode: .fit)
-        }.frame(width: 250, height: 250)
+            if model.cardState == .selected {
+                card.border(Color.green)
+            }
+            else {
+                card
+            }
+        }.cornerRadius(12).frame(width: 250, height: 250)
+    }
+    
+    var card: some View {
+        Image(image)
+            .resizable()
+            .background(Color.white)
+            .aspectRatio(contentMode: .fit)
     }
 }
 

@@ -19,7 +19,7 @@ class MatchGame: ObservableObject {
     var isFinished: Bool {
         return topCards.filter{ $0.cardState != .matched}.isEmpty
     }
-    var totalLives: Int = 3
+    @Published var totalLives: Int = 2
         
     func chooseNewsCard(card: NewsCard) {
         
@@ -60,6 +60,7 @@ class MatchGame: ObservableObject {
             bottomCards[bottomIndex].cardState = .matched
         }
         else {
+            totalLives -= 1
             topCards[topIndex].cardState = .facedDown
             bottomCards[bottomIndex].cardState = .facedDown
         }
@@ -146,6 +147,15 @@ class MatchGame: ObservableObject {
         result = result < dataBase.count ? result : dataBase.count
         return result
     }
+    
+    func getSelectedCard() -> NewsCard {
+        return topCards.filter({ $0.cardState == .selected }).first!
+    }
+    
+    func restartGame() {
+        totalLives = 2
+    }
+
     
     enum CardState {
         case facedDown

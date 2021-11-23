@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ob1.png",
+      "filename" : "sollua.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ob1@2x.png",
+      "filename" : "sollua@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ob1@3x.png",
+      "filename" : "sollua@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

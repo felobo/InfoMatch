@@ -28,7 +28,7 @@ struct NewsMatchDetailsView: View {
                     }.padding(.leading)
                     
                     
-                    Image("ob1")
+                    Image("sollua")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: UIScreen.main.bounds.width / 2)

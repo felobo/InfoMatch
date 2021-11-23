@@ -15,24 +15,56 @@ import SwiftUI
 
 struct MatchGameView: View {
     
-    var model: MatchGame
+    @ObservedObject var model: MatchGame
     @State private var isShowingModal = false
     
     var body: some View {
         ZStack {
             LinearGradient(gradient: GameGradient.newsMatchGame.getGradient(), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
-            VStack {
-                Spacer()
-                TopCarouselView(model: model)
-                BottomCarouselView(model: model)
-                Spacer()
-                MatchButtonsView(model: model)
+            if (model.totalLives > 0) {
+                VStack {
+                    Spacer()
+                    HStack {
+                        ForEach(0..<model.totalLives, id: \.self) {_ in
+                            Image(systemName: "heart.fill").foregroundColor(.white)
+                        }
+                    }
+                    Spacer()
+                    TopCarouselView(isShowingModal: $isShowingModal, model: model)
+                    BottomCarouselView(model: model)
+                    Spacer()
+                    MatchButtonsView(model: model)
+                }
+            }
+            else {
+                VStack {
+                    Text("Não foi dessa vez!")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding()
+                    Text("Mas podemos voltar a explorar o universo da informação novamente, vamos lá?").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundColor(.white)
+                        .padding()
+                    Spacer()
+                    Image("planetas")
+                        .frame(width: 150, height: 150).padding()
+                    Spacer()
+                    Button {
+                        model.restartGame()
+                    } label: {
+                        ZStack {
+                            LinearGradient(gradient: GameGradient.onboardingButton.getGradient(), startPoint: .top, endPoint: .bottom)
+                            Text("Jogar novamente")
+                                .fontWeight(.heavy)
+                                .foregroundColor(.white)
+                        }.frame(width: UIScreen.main.bounds.width/1.2, height: 60).cornerRadius(15)
+                    }
+                    Spacer()
+                }
             }
         }.navigationBarHidden(true)
-    }
-    
-    func generateModalView(index: Int) -> ExpandedNewsCardView {
-        return ExpandedNewsCardView(news: model.topCards[index].content, isShowing: $isShowingModal)
+        .sheet(isPresented: $isShowingModal) {
+                ExpandedNewsCardView(model: model.getSelectedCard())
+            }
     }
 }
 

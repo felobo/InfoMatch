@@ -34,6 +34,18 @@ struct NewsTypeCardView: View {
         }.cornerRadius(12)
             .frame(width: 250, height: 250)
     }
+    
+    var facedUp: some View {
+        VStack {
+            Text(model.content.rawValue)
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+            Text(model.content.getNewsTypeDescription())
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .foregroundColor(.black)
+                .padding(.all)
+        }
+    }
 }
 
 struct NewsTypeCardView_Previews: PreviewProvider {
